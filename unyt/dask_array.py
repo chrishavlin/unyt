@@ -153,7 +153,6 @@ def _is_iterable(obj):
 
 def _sanitize_unit_args(*input):
     # returns sanitized inputs and unyt_inputs for calling the ufunc
-    # what if i is a list or tuple????? np.concatenate([x,x2]) is one arg...
     unyt_inputs = _extract_unyt(input)
 
     if len(unyt_inputs) > 1:
@@ -566,7 +565,7 @@ def unyt_from_dask(
 # handle units.
 
 _nan_ops = ["nansum", "nanmean", "nanmedian", "nanstd", "nanmax", "nanmin", "nancumsum"]
-_passthrough_reductions = ["diagonal", "median", "nanmedian"]
+_passthrough_reductions = ["diagonal", "median", "mean", "sum"]
 
 
 def reduce_with_units(dask_func, unyt_dask_in, *args, **kwargs):
